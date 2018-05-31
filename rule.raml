@@ -12,14 +12,14 @@ documentation:
 
 
 schemas:
-  - baseline: !include schemas/oic.rule-baseline.json
-  - linklist: !include schemas/oic.oic-linklist-schema.json
-  - linkupdate: !include schemas/oic.oic-linkupdate-schema.json
-  - readwrite: !include schemas/oic.rule-rw.json
+  - rule-rw: !include schemas/oic.rule-rw-schema.json
+  - baseline: !include schemas/oic.core-schema.json
   - batch: !include schemas/oic.batch-retrieve-schema.json
-  - create: !include schemas/oic.create.json
-  - create-response: !include schemas/oic.create-response.json
-  - delete-Response: !include schemas/oic.delete-responses.json
+  - linklist: !include schemas/oic.oic-linklist-schema.json
+  - linkupdate: !include schemas/oic.if-linkupdate-schema.json
+  - create: !include schemas/oic.if-create-schema.json
+  - create-response: !include schemas/oic.if-create-response-schema.json
+  - delete-Response: !include schemas/oic.if-delete-response-schema.json
 
 traits:
   - interface:
@@ -69,7 +69,7 @@ traits:
                         "rel": ["self", "item"]
                       },
                       {
-                        "href": "binaryswitch",
+                        "href": "modeswitch",
                         "rel": ["item", "ruleinput"],
                         "rt": "oic.r.switch.binary",
                         "if": ["oic.if.a", "oic.if.baseline" ]
@@ -97,7 +97,7 @@ traits:
 /switch",
                         "rel": ["boundto"],
                         "bind": "obs",
-                        "anchor": "binaryswitch",
+                        "anchor": "modeswitch",
                         "if": ["oic.if.s"],
                         "ins": "377fac40"
                       },
@@ -152,22 +152,32 @@ traits:
                 schema: readwrite
                   example: |
                     {
-                      "rule": "(binaryswitch:value = true) and (temperature:temperature >= set-temp:temperature)",
+                      "rule": "(switch:value = true) and (temperature:temperature >= set-temp:temperature)",
                       "rulesresult": false,
                       "ruleenable": false,
-                      "actioneneble": false
+                      "actionenable": false
                     }
 
     post:
       body:
         application/json:
-          schema: readwrite
+          schema: rule-rw
             example: |
               {
-                "rule": "(binaryswitch:value == true) and (temperature:temperature >= set-temp:temperature)"
+                "rule": "(switch:value = true) and (temperature:temperature >= set-temp:temperature)"
               }
       responses:
         200:
+          body:
+            application/json:
+              schema: rule-rw
+                example: |
+                  {
+                    "rule": "(switch:value = true) and (temperature:temperature >= set-temp:temperature)",
+                    "rulesresult": false,
+                    "ruleenable": false,
+                    "actionenable": false
+                  }
 
 
 
@@ -189,14 +199,14 @@ traits:
                       {
                         "href":"",
                         "rep": {
-                          "rule": "(binaryswitch:value == true) and (temperature:temperature >= set-temp:temperature)",
+                          "rule": "(switch:value = true) and (temperature:temperature >= set-temp:temperature)",
                           "ruleresult": false,
-                          "reulenable": false,
+                          "ruleenable": false,
                           "actionenable": false
                         }
                       },
                       {
-                        "href": "binaryswitch",
+                        "href": "modeswitch",
                         "rep": {
                           "value": false
                         }
@@ -222,9 +232,9 @@ traits:
                     ]
 
 
-/RuleURI/resURI?if=oic.if.create:
+/RuleURI/resURI?if=oic.if.create&href=<uri-hint>:
     description: |
-      Create a rule input item using POST with oic.if.create
+      Create a rule input item using POST with oic.if.create, URI in the query parameter
       Creates a new resource in the collection and a link pointing to it
     displayName: rule-create
 
@@ -251,6 +261,23 @@ traits:
 
         responses:
           200:
+            body:
+              application/json:
+                schema: create-response
+                  example: |
+                    [
+                      {
+                        "href": "modeswitch",
+                        "rt": ["oic.r.switch.binary"],
+                        "if": ["oic.if.a", "oic.if.baseline" ],
+                        "n":  "Heat Mode"
+                        "rep": {
+                          "rt": ["oic.r.switch.binary"],
+                          "if": ["oic.if.a", "oic.if.baseline" ]
+                          "value": false
+                        }
+                      }
+                    ]
 
 
 /RuleURI?if=oic.if.delete:
@@ -270,9 +297,9 @@ traits:
                     {
                       "href": "/rules/heat-on/fanmode"
                     }
-                
 
-/RuleURI?if=oic.if.linkupdate:
+
+/RuleURI?if=oic.if.linkupdate&<link-selector>:
     description: |
       to add links, send a link list format containing the lints to be added
       to remove links, use query parameters to select link(s) to delete and send an empty link {}
@@ -294,7 +321,7 @@ traits:
   /switch",
                     "rel": ["boundto"],
                     "bind": "obs",
-                    "anchor": "binaryswitch",
+                    "anchor": "modeswitch",
                     "if": ["oic.if.s"],
                     "ins": "377fac40"
                   }
@@ -309,3 +336,18 @@ traits:
 
         responses:
           200:
+            application/json:
+              schema: linklist
+                example: |
+                  [
+                    {
+                      "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d
+      /switch",
+                      "rel": ["boundto"],
+                      "bind": "obs",
+                      "anchor": "modeswitch",
+                      "if": ["oic.if.s"],
+                      "ins": "377fac40",
+                      "tag-location": ["studio"]
+                    }
+                  ]
