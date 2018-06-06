@@ -16,10 +16,10 @@ schemas:
   - baseline: !include schemas/oic.core-schema.json
   - batch: !include schemas/oic.batch-retrieve-schema.json
   - linklist: !include schemas/oic.oic-linklist-schema.json
-  - linkupdate: !include schemas/oic.if-linkupdate-schema.json
-  - create: !include schemas/oic.if-create-schema.json
-  - create-response: !include schemas/oic.if-create-response-schema.json
-  - delete-Response: !include schemas/oic.if-delete-response-schema.json
+  - linkupdate: !include schemas/oic.if.linkupdate-schema.json
+  - create: !include schemas/oic.if.create-schema.json
+  - create-response: !include schemas/oic.if.create-response-schema.json
+  - delete-Response: !include schemas/oic.if.delete-response-schema.json
 
 traits:
   - interface:
@@ -153,7 +153,7 @@ traits:
                   example: |
                     {
                       "rule": "(switch:value = true) and (temperature:temperature >= set-temp:temperature)",
-                      "rulesresult": false,
+                      "ruleresult": false,
                       "ruleenable": false,
                       "actionenable": false
                     }
@@ -174,7 +174,7 @@ traits:
                 example: |
                   {
                     "rule": "(switch:value = true) and (temperature:temperature >= set-temp:temperature)",
-                    "rulesresult": false,
+                    "ruleresult": false,
                     "ruleenable": false,
                     "actionenable": false
                   }
@@ -254,7 +254,7 @@ traits:
                 {
                   "rt": "oic.r.switch.binary",
                   "if": ["oic.if.a", "oic.if.baseline" ],
-                  "n":  "Heat Mode"
+                  "title":  "Heat Mode"
                   "rep": {
                     "rt": "oic.r.switch.binary",
                     "if": ["oic.if.a", "oic.if.baseline" ]
@@ -274,7 +274,7 @@ traits:
                         "href": "modeswitch",
                         "rt": ["oic.r.switch.binary"],
                         "if": ["oic.if.a", "oic.if.baseline" ],
-                        "n":  "Heat Mode"
+                        "title":  "Heat Mode"
                         "rep": {
                           "rt": ["oic.r.switch.binary"],
                           "if": ["oic.if.a", "oic.if.baseline" ]
@@ -306,7 +306,7 @@ traits:
 /RuleURI?if=oic.if.linkupdate:
     description: |
       to add links, send a link list format containing the lints to be added
-      to remove links, use query parameters to select link(s) to delete and send an empty link {}
+      to remove links, use query parameters to select link(s) to delete and send an empty link array []
       to modify links, use query parameters to select link(s) to patch and send the cbor
       serialization of json merge-patch format using the linkupdate schema
     displayName: rule-linkupdate
