@@ -27,11 +27,11 @@ traits:
 /DynlinkResURI?if=oic.if.baseline:
     description: |
       Baseline representation of a dynlink contains only its common properties
-    displayName: rule-baseline
+    displayName: dynlink-baseline
 
     get:
         description: |
-          Common properties of the Dynlink resource type
+          Common properties of the dynlink resource type
         responses:
           200:
             body:
@@ -46,12 +46,12 @@ traits:
 
 /DynlinkResURI?if=oic.if.ll:
     description: |
-      link list representation of a dynlink contains its linkstatus and bindings
-    displayName: rule-linklist
+      Link list representation of a dynlink contains its linkstatus and bindings
+    displayName: dynlink-linklist
 
     get:
         description: |
-          links of the Dynlink resource type
+          Links of the dynlink resource type
         responses:
           200:
             body:
@@ -60,8 +60,7 @@ traits:
                   example: |
                     [
                       {
-                        "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d
-/switch",
+                        "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d/switch",
                         "rel": ["boundto"],
                         "bind": "obs",
                         "anchor": "modeswitch",
@@ -69,8 +68,7 @@ traits:
                         "ins": "377fac40"
                       },
                       {
-                        "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d
-/temperature",
+                        "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d/temperature",
                         "rel": ["boundto"],
                         "bind": "obs",
                         "anchor": "temperature",
@@ -81,27 +79,26 @@ traits:
                         "href": "scenevalue",
                         "rel": ["boundto"],
                         "bind": "push",
-                        "anchor": "ocf://5c68f373-0c4c-4604-9922-db639e20533d
-/heatcontrol",
+                        "anchor": "ocf://5c68f373-0c4c-4604-9922-db639e20533d/heatcontrol",
                         "if": ["oic.if.a"],
                         "ins": "ca5f1004"
                       },
                       {
                         "href": "377fac40",
                         "rt": "oic.r.linkstatus",
-                        "if": "oic.if.baseline", "oic.if.rw",
+                        "if": ["oic.if.baseline", "oic.if.rw"],
                         "linkinstance": "377fac40"
                       },
                       {
                         "href": "f33a89b2",
                         "rt": "oic.r.linkstatus",
-                        "if": "oic.if.baseline", "oic.if.rw",
+                        "if": ["oic.if.baseline", "oic.if.rw"],
                         "linkinstance": "f33a89b2"
                       },
                       {
                         "href": "ca5f1004",
                         "rt": "oic.r.linkstatus",
-                        "if": "oic.if.baseline", "oic.if.rw",
+                        "if": ["oic.if.baseline", "oic.if.rw"],
                         "linkinstance": "ca5f1004"
                       }
                     ]
@@ -109,12 +106,12 @@ traits:
 
 /DynlinkResURI?if=oic.if.b:
     description: |
-      Batch representation of a rule contains the rule string, rule inputs and rule actions
-    displayName: rule-batch
+      Batch representation of a dynlink contains the link status resources
+    displayName: dynlink-batch
 
     get:
         description: |
-          Batch interface of the Rule resource type
+          Batch interface of the dynlink resource type
         responses:
           200:
             body:
@@ -161,7 +158,7 @@ traits:
       to remove links, use query parameters to select link(s) to delete and send an empty link array []
       to modify links, use query parameters to select link(s) to patch and send the cbor
       serialization of json merge-patch format using the linkupdate schema
-    displayName: rule-linkupdate
+    displayName: dynlink-linkupdate
 
     post:
         description: |
@@ -185,8 +182,7 @@ traits:
               example: |
                 [
                   {
-                    "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d
-  /switch",
+                    "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d/switch",
                     "rel": ["boundto"],
                     "bind": "obs",
                     "anchor": "modeswitch",
@@ -209,8 +205,7 @@ traits:
                 example: |
                   [
                     {
-                      "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d
-      /switch",
+                      "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d/switch",
                       "rel": ["boundto"],
                       "bind": "obs",
                       "anchor": "modeswitch",
