@@ -1,0 +1,87 @@
+#%RAML 0.8
+title: Dynamic link status resource definition
+version: v0.1.0-20180606
+documentation:
+
+  - title: OCF Copyright
+    content: Copyright (c) 2016, 2017, 2018 Open Connectivity Foundation, Inc. All rights reserved.
+  - title: OCF License
+    content: !include LICENSE.md
+  - title: OCF Disclaimer
+    content: !include DISCLAIMER.md
+
+
+schemas:
+  - linkstatus-rw: !include schemas/oic.r.linkstatus-rw-schema.json
+  - baseline: !include schemas/oic.core-schema.json
+
+traits:
+  - interface:
+      queryParameters:
+        if:
+          enum: ["oic.if.rw", "oic.if.baseline"]
+
+
+/LinkstatusResURI?if=oic.if.baseline:
+    description: |
+      Baseline representation of a linkstatus resoource contains only its common properties
+    displayName: dynlinkstatus-baseline
+
+    get:
+        description: |
+          Common properties of the linkstatus resource
+        responses:
+          200:
+            body:
+              application/json:
+                schema: baseline
+                example: |
+                {
+                  "rt": ["oic.r.linkstatus"],
+                  "if": ["oic.if.rw", "oic.if.baseline"],
+                }
+
+
+/LinkstatusResURI?if=oic.if.rw:
+    description: |
+      Read/write representation of a linkstatus resource
+    displayName: linkstatus-rw
+
+    get:
+        description: |
+          Read/write interface of the linkstatus resource
+        responses:
+          200:
+            body:
+              application/json:
+                schema: linkstatus-rw
+                  example: |
+                    {
+                      "linkstate": "active",
+                      "laststatus": "200",
+                      "idletime": 2195,
+                      "maxidle": 6000,
+                      "linkinstance": "7ffe23ac"
+                    }
+
+    post:
+      body:
+        application/json:
+          schema: linkstatus-rw
+            example: |
+              {
+                "maxidle": 3000
+              }
+      responses:
+        200:
+          body:
+            application/json:
+              schema: linkstatus-rw
+                example: |
+                  {
+                    "linkstate": "active",
+                    "laststatus": "200",
+                    "idletime": 0,
+                    "maxidle": 3000,
+                    "linkinstance": "7ffe23ac"
+                  }
