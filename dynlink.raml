@@ -27,11 +27,11 @@ traits:
 /DynlinkResURI?if=oic.if.baseline:
     description: |
       Baseline representation of a dynlink contains only its common properties
-    displayName: rule-baseline
+    displayName: dynlink-baseline
 
     get:
         description: |
-          Common properties of the Dynlink resource type
+          Common properties of the dynlink resource type
         responses:
           200:
             body:
@@ -46,12 +46,12 @@ traits:
 
 /DynlinkResURI?if=oic.if.ll:
     description: |
-      link list representation of a dynlink contains its linkstatus and bindings
-    displayName: rule-linklist
+      Link list representation of a dynlink contains its linkstatus and bindings
+    displayName: dynlink-linklist
 
     get:
         description: |
-          links of the Dynlink resource type
+          Links of the dynlink resource type
         responses:
           200:
             body:
@@ -106,12 +106,12 @@ traits:
 
 /DynlinkResURI?if=oic.if.b:
     description: |
-      Batch representation of a rule contains the rule string, rule inputs and rule actions
-    displayName: rule-batch
+      Batch representation of a dynlink contains the link status resources
+    displayName: dynlink-batch
 
     get:
         description: |
-          Batch interface of the Rule resource type
+          Batch interface of the dynlink resource type
         responses:
           200:
             body:
@@ -158,7 +158,7 @@ traits:
       to remove links, use query parameters to select link(s) to delete and send an empty link array []
       to modify links, use query parameters to select link(s) to patch and send the cbor
       serialization of json merge-patch format using the linkupdate schema
-    displayName: rule-linkupdate
+    displayName: dynlink-linkupdate
 
     post:
         description: |
