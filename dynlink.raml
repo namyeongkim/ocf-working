@@ -60,8 +60,7 @@ traits:
                   example: |
                     [
                       {
-                        "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d
-/switch",
+                        "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d/switch",
                         "rel": ["boundto"],
                         "bind": "obs",
                         "anchor": "modeswitch",
@@ -69,8 +68,7 @@ traits:
                         "ins": "377fac40"
                       },
                       {
-                        "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d
-/temperature",
+                        "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d/temperature",
                         "rel": ["boundto"],
                         "bind": "obs",
                         "anchor": "temperature",
@@ -81,27 +79,26 @@ traits:
                         "href": "scenevalue",
                         "rel": ["boundto"],
                         "bind": "push",
-                        "anchor": "ocf://5c68f373-0c4c-4604-9922-db639e20533d
-/heatcontrol",
+                        "anchor": "ocf://5c68f373-0c4c-4604-9922-db639e20533d/heatcontrol",
                         "if": ["oic.if.a"],
                         "ins": "ca5f1004"
                       },
                       {
                         "href": "377fac40",
                         "rt": "oic.r.linkstatus",
-                        "if": "oic.if.baseline", "oic.if.rw",
+                        "if": ["oic.if.baseline", "oic.if.rw"],
                         "linkinstance": "377fac40"
                       },
                       {
                         "href": "f33a89b2",
                         "rt": "oic.r.linkstatus",
-                        "if": "oic.if.baseline", "oic.if.rw",
+                        "if": ["oic.if.baseline", "oic.if.rw"],
                         "linkinstance": "f33a89b2"
                       },
                       {
                         "href": "ca5f1004",
                         "rt": "oic.r.linkstatus",
-                        "if": "oic.if.baseline", "oic.if.rw",
+                        "if": ["oic.if.baseline", "oic.if.rw"],
                         "linkinstance": "ca5f1004"
                       }
                     ]
@@ -185,8 +182,7 @@ traits:
               example: |
                 [
                   {
-                    "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d
-  /switch",
+                    "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d/switch",
                     "rel": ["boundto"],
                     "bind": "obs",
                     "anchor": "modeswitch",
@@ -209,8 +205,7 @@ traits:
                 example: |
                   [
                     {
-                      "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d
-      /switch",
+                      "href": "ocf://5c68f373-0c4c-4604-9922-db639e20533d/switch",
                       "rel": ["boundto"],
                       "bind": "obs",
                       "anchor": "modeswitch",
