@@ -113,9 +113,10 @@
                 "maxLength": 64,
                 "readOnly": true,
                 "description": "Instance ID of this specific resource"
-              },
-              "additionalProperties": true,
-              "required": ["rt","if"]
+              }
+            },
+            "additionalProperties": true,
+            "required": ["rt","if"]
           }
         },
         "additionalProperties": true,
