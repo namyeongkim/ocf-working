@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "description" : "Copyright (c) 2016, 2017, 2018 Open Connectivity Foundation, Inc. All rights reserved.",
     "id": "https://github.com/openconnectivityfoundation/core/schemas/oic.linkstatus-rw-schema.json#",
-    "title": "Rule Resource Type",
+    "title": "Linkstatus Resource Type",
     "definitions": {
       "linkstatus-properties": {
         "properties": {
@@ -21,16 +21,16 @@
           "idletime": {
             "type": "number",
             "readOnly": true,
-            "description": "seconds since last transfer on the dynlink"
+            "description": "Seconds since last transfer on the dynlink"
 		      },
           "maxidle": {
             "type": "number",
-            "description": "maximum idle seconds until timeout error"
+            "description": "Maximum idle seconds until timeout error"
 		      },
           "linkinstance": {
             "type": "string",
             "readOnly": true,
-            "description": "the instance parameter of the dynamic link"
+            "description": "The instance parameter of the dynamic link"
 		      }
         }
       }
