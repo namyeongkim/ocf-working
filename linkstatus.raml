@@ -1,10 +1,10 @@
 #%RAML 0.8
 title: Dynamic link status resource definition
-version: v0.1.0-20180606
+version: v0.1.1-20180620
 documentation:
 
   - title: OCF Copyright
-    content: Copyright (c) 2016, 2017, 2018 Open Connectivity Foundation, Inc. All rights reserved.
+    content: Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.
   - title: OCF License
     content: !include LICENSE.md
   - title: OCF Disclaimer
@@ -59,8 +59,8 @@ traits:
                     {
                       "linkstate": "active",
                       "laststatus": "200",
-                      "idletime": 2195,
-                      "maxidle": 6000,
+                      "endtime": "2018-06-20T07:07:03+00:00",
+                      "maxwait": 6000,
                       "linkinstance": "7ffe23ac"
                     }
 
@@ -81,7 +81,7 @@ traits:
                   {
                     "linkstate": "active",
                     "laststatus": "200",
-                    "idletime": 0,
-                    "maxidle": 3000,
+                    "endtime": "2018-06-20T07:07:03+00:00",
+                    "maxwait": 6000,
                     "linkinstance": "7ffe23ac"
                   }
