@@ -12,8 +12,13 @@
             "maxLength": 8192,
             "readOnly": false,
             "description": "The rule itself, expressed as a string in the ABNF format specified"
-          },
-          "ruleresult": {
+          }, 		
+        "rulecategory": {
+	    "type": "string",
+	    "readOnly": true,
+	    "description": "The category of Rule. If absent, the default value is normal"
+	  },	
+	"ruleresult": {
             "type": "boolean",
             "readOnly": false,
             "description": "The boolean result of evaluating the rule with the current inputs"
@@ -27,7 +32,12 @@
             "type": "boolean",
             "readOnly": false,
             "description": "If true, actions are triggered on ruleenable value transition from false to true"
-		      }
+		      },
+	  "priorityenable": {
+	    "type": "boolean",
+	    "readOnly": false,
+	    "description": "If true, the priority mechanism is processed."
+	  }
         }
       }
     },
@@ -35,6 +45,6 @@
     "allOf": [
       {"$ref": "#/definitions/rule-properties"}
     ],
-    "required": ["rule","ruleresult","ruleenable","actionenable"],
+    "required": ["rule","rulecategory","ruleresult","ruleenable","actionenable","priorityenable"],
     "additionalProperties": true
 }
