@@ -15,6 +15,7 @@
           }, 		
         "rulecategory": {
 	    "type": "string",
+	    "enum": [ "normal", "emergency" ],
 	    "readOnly": true,
 	    "description": "The category of Rule. If absent, the default value is normal"
 	  },	
