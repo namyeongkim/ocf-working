@@ -13,13 +13,13 @@
             "readOnly": false,
             "description": "The rule itself, expressed as a string in the ABNF format specified"
           }, 		
-        "rulecategory": {
+          "rulecategory": {
 	    "type": "string",
 	    "enum": [ "normal", "emergency" ],
 	    "readOnly": true,
 	    "description": "The category of Rule. If absent, the default value is normal"
 	  },	
-	"ruleresult": {
+	  "ruleresult": {
             "type": "boolean",
             "readOnly": false,
             "description": "The boolean result of evaluating the rule with the current inputs"
